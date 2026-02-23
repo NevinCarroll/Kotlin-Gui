@@ -10,6 +10,10 @@ var maze: List<String>? = null // Holds the raw maze from file
 var tiles: Array<Array<Tile>> = Array(4) { Array(10) { Tile(TileType.OPEN) } } // 2D array of Tile objects
 var time: Int = 0 // Amount of moves player has taken
 
+// Swing variables
+var frame : JFrame = JFrame("Maze Explorer")
+var currentPanel : JPanel = JPanel()
+
 /**
  * TODO edit to work with GUI
  */
@@ -33,39 +37,67 @@ fun loadMaze(fileNum: Int) {
     player.setPosition(0, 0)
 }
 
-fun mazeGame() {
-
-}
-
-fun mainMenu() {
-    // play game
-    // high scores
-    // tutorial
-}
-
-fun main () {
-    val frame = JFrame("Divine Intellect")
-    frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-    frame.setSize(400, 300)
-
+fun menuScreen() {
     // Create a panel to hold components
-    val panel = JPanel()
+
+    currentPanel.removeAll()
 
     // Add a label
     val label = JLabel("Hello, Swing in Kotlin!")
-    panel.add(label)
+    currentPanel.add(label)
 
     // Add a button
-    val button = JButton("Click Me")
+    val button = JButton("Tutorial")
     button.addActionListener {
-        label.text = "Button Clicked!"
+        tutorialScreen()
     }
-    panel.add(button)
+    currentPanel.add(button)
 
     // Add panel to frame
-    frame.contentPane.add(panel)
+    frame.contentPane.add(currentPanel)
 
     // Make frame visible
     frame.isVisible = true
+
+    frame.repaint()
+    frame.revalidate()
+}
+
+fun gameScreen() {
+    currentPanel.removeAll()
+
+    frame.repaint()
+    frame.revalidate()
+}
+
+fun tutorialScreen() {
+    currentPanel.removeAll()
+
+    // TODO Add Tutorial Text
+
+    val button = JButton("Back")
+    button.addActionListener {
+        menuScreen()
+    }
+    currentPanel.add(button)
+
+    frame.repaint()
+    frame.revalidate()
+}
+
+fun highScoresScreen() {
+    currentPanel.removeAll()
+
+    // TODO Read csv file and display top 5 scores
+
+    frame.repaint()
+    frame.revalidate()
+}
+
+fun main () {
+    frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+    frame.setSize(400, 300)
+
+    menuScreen()
 
 }
