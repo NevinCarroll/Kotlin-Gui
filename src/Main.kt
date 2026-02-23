@@ -1,8 +1,7 @@
+import java.awt.BorderLayout
+import java.awt.GridLayout
 import java.io.File
-import javax.swing.JFrame
-import javax.swing.JButton
-import javax.swing.JLabel
-import javax.swing.JPanel
+import javax.swing.*
 
 // Global variables
 var player: Player = Player() // Player object representing the player
@@ -42,16 +41,30 @@ fun menuScreen() {
 
     currentPanel.removeAll()
 
-    // Add a label
-    val label = JLabel("Hello, Swing in Kotlin!")
+    val label = JLabel("Maze Explorer")
     currentPanel.add(label)
+    currentPanel.layout = BoxLayout(currentPanel, BoxLayout.Y_AXIS)
+    currentPanel.add(Box.createHorizontalGlue())
 
     // Add a button
-    val button = JButton("Tutorial")
-    button.addActionListener {
+    val gameButton = JButton("Play Game")
+    gameButton.addActionListener {
         tutorialScreen()
     }
-    currentPanel.add(button)
+    currentPanel.add(gameButton)
+
+    // Add a button
+    val tutorialButton = JButton("Tutorial")
+    tutorialButton.addActionListener {
+        tutorialScreen()
+    }
+    currentPanel.add(tutorialButton)
+
+    val highScoreButton = JButton("High Scores")
+    highScoreButton.addActionListener {
+        highScoresScreen()
+    }
+    currentPanel.add(highScoreButton)
 
     // Add panel to frame
     frame.contentPane.add(currentPanel)
@@ -65,6 +78,17 @@ fun menuScreen() {
 
 fun gameScreen() {
     currentPanel.removeAll()
+
+    currentPanel.layout = BorderLayout()
+
+    val mazePanel = JPanel()
+    mazePanel.layout = GridLayout(maze!!.size, 20) // TODO Change Hardcoded value
+
+    val button = JButton("Back")
+    button.addActionListener {
+        menuScreen()
+    }
+    currentPanel.add(button)
 
     frame.repaint()
     frame.revalidate()
@@ -88,6 +112,12 @@ fun tutorialScreen() {
 fun highScoresScreen() {
     currentPanel.removeAll()
 
+
+    val button = JButton("Back")
+    button.addActionListener {
+        menuScreen()
+    }
+    currentPanel.add(button)
     // TODO Read csv file and display top 5 scores
 
     frame.repaint()
