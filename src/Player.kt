@@ -4,7 +4,7 @@
  * Represents the player in the maze. Stores the current position
  * of the player and provides methods to get and set the position.
  */
-class Player(private var playerName: String?) {
+class PlayerPosition() {
 
     // Array storing player's current position: [x, y]
     private var position: IntArray = IntArray(2)

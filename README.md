@@ -1,54 +1,77 @@
-# Maze Explorer
+# Maze Explorer GUI
 
-A simple text-based maze game written in Kotlin.  
-The player (@) navigates through a randomly generated maze to reach the end (*), avoiding walls (#) and moving only through open spaces ($).
+A maze game written in Kotlin using Java Swing for a graphical interface.
+The player navigates through a maze to reach the end while avoiding walls and moving through open spaces.
 
 ## Features
 
-- Console-based game with clear text visualization of the maze
-- Randomly selects one of multiple maze files on start
+- Graphical interface using Kotlin Swing
+
+- Randomly selects one of multiple maze files at startup
+
 - Tracks the number of moves taken by the player
-- Supports restarting the game after completion
-- Simple controls using W/A/S/D keys
+
+- Allows restarting the game after completion
+
+- Keyboard controls with W/A/S/D keys
+
+- Visual representation of the player, walls, open spaces, and end point
 
 ## How to Play
 
-1. Use the following controls to move:
-    - `W` = Up
-    - `A` = Left
-    - `S` = Down
-    - `D` = Right
-2. Navigate from the starting position (top-left) to the end tile `*`.
-3. The game tracks how many moves it takes to finish the maze.
-4. After finishing, you can choose to play again or exit.
+1. Use the following keys to move the player:
 
-## Maze Representation
+- W = Up
 
-| Symbol | Meaning       |
-|--------|---------------|
-| @      | Player        |
-| #      | Wall          |
-| $      | Open space    |
-| *      | End of maze   |
+- A = Left
+
+- S = Down
+
+- D = Right
+
+2. Navigate from the starting position to the flag.
+
+3. The game counts how long it takes for you to complete maze.
+
+4. After reaching the end, you can restart the game or exit.
 
 ## Requirements
 
-- Kotlin 2.3.0
+- Kotlin 2.3.0 or later
+
 - Java JDK installed
 
 ## How to Run
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/NevinCarroll/kotlin-console.git
-2. Run the main function in Main.kt
-3. Follow the on-screen instructions to play
 
-## Edit Maze
+``` bash
+git clone https://github.com/NevinCarroll/Maze-Explorer-GUI.git
+cd Maze-Explorer-GUI
+```
 
-If you wish to edit a maze, go to /resources, and you will see maze\[num].txt files. When opening a file, you
-will see a 10x10 grid of 1 and 0, along with an *.
+2. Compile the Kotlin files (from the project root):
 
-The 1s represent a wall, the 0s open spaces, and the * as the end point. Change any of the symbols to another one to edit
-the maze's layout. If a symbol besides 0, 1, or * is in the file, an exception will be thrown for an improper maze file.
+``` bash
+kotlinc src/main/kotlin/*.kt -include-runtime -d MazeExplorerGUI.jar
+```
 
+3. Run the compiled JAR file:
+
+``` bash
+java -jar MazeExplorerGUI.jar
+```
+
+4. Use the keyboard controls to play the game in the GUI window.
+
+## Editing Mazes
+
+Maze files are located in /resources as maze[num].txt. Each file contains a 10x10 grid using:
+
+- 1 = Wall
+
+- 0 = Open space
+
+- \* = End point
+
+You can edit these files to create custom mazes. Only 0, 1, and * are valid; any other symbol will cause an exception.

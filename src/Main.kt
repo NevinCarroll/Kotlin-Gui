@@ -21,7 +21,7 @@ import java.io.File
 import javax.swing.*
 
 // Player object representing the current player
-var player: Player = Player("")
+var player: PlayerPosition = PlayerPosition()
 
 // Raw maze file content (list of strings)
 var maze: List<String>? = null
@@ -75,7 +75,8 @@ fun loadMaze(fileNum: Int) {
  */
 fun getRandomMazeFileNumber(): Int {
     val mazeFolder = File("resources/mazes")
-    val mazeFiles = mazeFolder.listFiles { file -> file.isFile && file.name.matches(Regex("maze\\d+\\.txt")) } // Only get files that follow this format "maze{number}.txt"
+    val mazeFiles =
+        mazeFolder.listFiles { file -> file.isFile && file.name.matches(Regex("maze\\d+\\.txt")) } // Only get files that follow this format "maze{number}.txt"
 
     if (mazeFiles.isNullOrEmpty()) {
         throw IllegalStateException("No maze files found in resources/mazes")
