@@ -6,6 +6,7 @@ out/
 
 *.iml
 .idea/
+highscores.csv
 
 ### Eclipse ###
 .apt_generated
